@@ -1,16 +1,17 @@
 %define		_kernel_ver	%(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
-%define		smpstr		%{?_with_smp:smp}%{!?_with_smp:up}
+%define		_kernel_ver_str	%(echo %{_kernel_ver} | sed s/-/_/g)
+%define		smpstr		%{?_with_smp:-smp}
 %define		smp		%{?_with_smp:1}%{!?_with_smp:0}
 
 Summary:	Universal TUN/TAP device driver
-Name:		tun
+Name:		kernel%{smpstr}-net-tun
 Version:	1.1
-Release:	1@%{_kernel_ver}%{smpstr}
+Release:	1@%{_kernel_ver_str}
 License:	GPL
 Group:		Base/Kernel
 Group(de):	Grundsätzlich/Kern
 Group(pl):	Podstawowe/J±dro
-Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
+Source0:	http://vtun.sourceforge.net/tun/tun-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
 BuildRequires:	kernel-headers < 2.3.0
@@ -27,7 +28,7 @@ receives them from user space program and instead of sending packets
 via physical media writes them to the user space program.
 
 %prep
-%setup -q 
+%setup -q -n tun-%{version}
 
 %build
 %if %{smp}
