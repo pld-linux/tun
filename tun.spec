@@ -19,6 +19,7 @@ Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 # Source0-md5:	b270be81ff9b743d9e9031b0b1a36ebe
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
+BuildRequires:	rpmbuild(macros) >= 1.118
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -93,10 +94,10 @@ perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
 rm -rf $RPM_BUILD_ROOT
 
 %post	-n kernel%{smpstr}-net-tun
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %postun	-n kernel%{smpstr}-net-tun
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %files -n kernel%{smpstr}-net-tun
 %defattr(644,root,root,755)
