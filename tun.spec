@@ -10,8 +10,6 @@ Version:	1.1
 Release:	1
 License:	GPL
 Group:		Base/Kernel
-Group(de):	Grundsätzlich/Kern
-Group(pl):	Podstawowe/J±dro
 Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
@@ -37,8 +35,6 @@ Summary:	Universal TUN/TAP device driver
 Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
 Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
-Group(de):	Grundsätzlich/Kern
-Group(pl):	Podstawowe/J±dro
 Prereq:		/sbin/depmod
 Conflicts:	kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
 Conflicts:	kernel-%{?_with_smp:up}%{!?_with_smp:smp}
