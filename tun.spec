@@ -1,3 +1,5 @@
+%define		_kernel_ver %(grep UTS_RELEASE /usr/src/linux/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
+
 Summary:	Universal TUN/TAP device driver
 Name:		tun
 Version:	1.1
@@ -10,7 +12,7 @@ Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
 Prereq:		/sbin/depmod
-%conflicts_kernel_ver
+Conflicts:	kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
