@@ -1,0 +1,7 @@
+A group commit:
+- %define _kernel_ver and _kernel24 removed (already in rpm.macros)
+- kernel modules get a @%{_kernel_ver} release suffix and conflict wrong
+  kernel version
+- other packages get a @%{_kernel_series} release suffix and conflict
+  wrong kernel series
+- need a rebuilt RPM to build these
