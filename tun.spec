@@ -80,7 +80,7 @@ install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/net
 install linux/tun.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/net
 
 install -d $RPM_BUILD_ROOT/dev
-perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev 
+perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
 %{__make} -C linux dev
 
 gzip -9nf FAQ README ChangeLog
