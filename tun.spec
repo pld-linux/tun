@@ -1,3 +1,8 @@
+#
+# Conditional build:
+# _without_dist_kernel	- without kernel from distribution
+#
+# TODO: UP/SMP
 %define		_kernel_ver	%(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 %define		_kernel_ver_str	%(echo %{_kernel_ver} | sed s/-/_/g)
 %define		smpstr		%{?_with_smp:-smp}
@@ -13,7 +18,7 @@ Group:		Base/Kernel
 Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
-%{!?no_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
+%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,7 +40,7 @@ Summary:	Universal TUN/TAP device driver
 Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
 Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
-Prereq:		/sbin/depmod
+Requires(post,postun):	/sbin/depmod
 Conflicts:	kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
 Conflicts:	kernel-%{?_with_smp:up}%{!?_with_smp:smp}
 
@@ -83,15 +88,14 @@ install -d $RPM_BUILD_ROOT/dev
 perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
 %{__make} -C linux dev
 
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-n kernel%{smpstr}-net-tun
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %postun	-n kernel%{smpstr}-net-tun
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %files -n kernel%{smpstr}-net-tun
 %defattr(644,root,root,755)
