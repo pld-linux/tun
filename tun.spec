@@ -1,13 +1,12 @@
+# TODO: UP/SMP
 #
 # Conditional build:
-# _without_dist_kernel	- without kernel from distribution
+%bcond_without	dist_kernel	# without kernel from distribution
 #
-# TODO: UP/SMP
 %define		_kernel_ver	%(grep UTS_RELEASE %{_kernelsrcdir}/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 %define		_kernel_ver_str	%(echo %{_kernel_ver} | sed s/-/_/g)
-%define		smpstr		%{?_with_smp:-smp}
-%define		smp		%{?_with_smp:1}%{!?_with_smp:0}
-
+%define		smpstr		%{?with_smp:-smp}
+%define		smp		%{?with_smp:1}%{!?with_smp:0}
 Summary:	Universal TUN/TAP device driver
 Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
 Name:		tun
@@ -20,7 +19,7 @@ Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
 BuildRequires:	rpmbuild(macros) >= 1.118
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
+%{?with_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +43,7 @@ Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
 Conflicts:	kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
-Conflicts:	kernel-%{?_with_smp:up}%{!?_with_smp:smp}
+Conflicts:	kernel-%{?with_smp:up}%{!?with_smp:smp}
 
 %description -n kernel%{smpstr}-net-tun
 TUN/TAP provides packet reception and transmission for user space
