@@ -83,7 +83,6 @@ install -d $RPM_BUILD_ROOT/dev
 perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
 %{__make} -C linux dev
 
-gzip -9nf FAQ README ChangeLog
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,6 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kernel%{smpstr}-net-tun
 %defattr(644,root,root,755)
-%doc *.gz
+%doc FAQ README ChangeLog
 %attr(644,root,root) /lib/modules/%{_kernel_ver}/net/tun.o
 %attr(600,root,root) /dev/*
