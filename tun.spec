@@ -1,7 +1,7 @@
 Summary:	Universal TUN/TAP device driver
 Name:		tun
 Version:	1.1
-Release:	1
+Release:	1@%{_kernel_ver}
 License:	GPL
 Group:		Base/Kernel
 Group(de):	Grundsätzlich/Kern
@@ -10,9 +10,8 @@ Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
 Prereq:		/sbin/depmod
+%conflicts_kernel_ver
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_kernel_ver	%(grep UTS_RELEASE /usr/include/linux/version.h 2>/dev/null | cut -d'"' -f2)
 
 %description
 TUN/TAP provides packet reception and transmission for user space
