@@ -16,6 +16,7 @@ Release:	1
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
+# Source0-md5:	b270be81ff9b743d9e9031b0b1a36ebe
 URL:		http://vtun.sourceforge.net/tun/
 BuildRequires:	perl
 %{!?_without_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
