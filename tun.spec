@@ -96,5 +96,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{smpstr}-net-tun
 %defattr(644,root,root,755)
 %doc FAQ README ChangeLog
-%attr(644,root,root) /lib/modules/%{_kernel_ver}/net/tun.o
+%attr(644,root,root) /lib/modules/%{_kernel_ver}/net/tun.o*
 %attr(600,root,root) /dev/*
