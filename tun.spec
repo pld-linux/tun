@@ -17,7 +17,7 @@ Group:		Base/Kernel
 Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 # Source0-md5:	b270be81ff9b743d9e9031b0b1a36ebe
 URL:		http://vtun.sourceforge.net/tun/
-BuildRequires:	perl
+BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.118
 %{?with_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -86,7 +86,7 @@ install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/net
 install linux/tun.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/net
 
 install -d $RPM_BUILD_ROOT/dev
-perl -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
+%{__perl} -pi -e "s|/dev|$RPM_BUILD_ROOT/dev|g;" linux/create_dev
 %{__make} -C linux dev
 
 %clean
