@@ -17,9 +17,9 @@ Group:		Base/Kernel
 Source0:	http://vtun.sourceforge.net/tun/%{name}-%{version}.tar.gz
 # Source0-md5:	b270be81ff9b743d9e9031b0b1a36ebe
 URL:		http://vtun.sourceforge.net/tun/
+%{?with_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.118
-%{?with_dist_kernel:BuildRequires:	kernel-headers < 2.3.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,7 +42,8 @@ Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
 Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
-Conflicts:	kernel < %{_kernel_ver}, kernel > %{_kernel_ver}
+Conflicts:	kernel < %{_kernel_ver}
+Conflicts:	kernel > %{_kernel_ver}
 Conflicts:	kernel-%{?with_smp:up}%{!?with_smp:smp}
 
 %description -n kernel%{smpstr}-net-tun
@@ -101,5 +102,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kernel%{smpstr}-net-tun
 %defattr(644,root,root,755)
 %doc FAQ README ChangeLog
-%attr(644,root,root) /lib/modules/%{_kernel_ver}/net/tun.o*
+/lib/modules/%{_kernel_ver}/net/tun.o*
 %attr(600,root,root) /dev/*
