@@ -8,7 +8,7 @@
 %define		smpstr		%{?with_smp:-smp}
 %define		smp		%{?with_smp:1}%{!?with_smp:0}
 Summary:	Universal TUN/TAP device driver
-Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
+Summary(pl.UTF-8):   Uniwersalny sterownik urzÄ…dzeÅ„ TUN/TAP
 Name:		tun
 Version:	1.1
 Release:	1
@@ -29,16 +29,16 @@ device, which instead of receiving packets from a physical media,
 receives them from user space program and instead of sending packets
 via physical media writes them to the user space program.
 
-%description -l pl
-TUN/TAP zapewnia przyjmowanie i transmisjê pakietów dla programów
-user-space. Mo¿e byæ widziany jako zwyk³e urz±dzenie Point-to-Point
-lub Ethernet, które zamiast otrzymywania pakietów z fizycznego medium
-otrzymuje je od programu i zamiast wysy³ania pakietów przez fizyczne
-medium wysy³a je do programu.
+%description -l pl.UTF-8
+TUN/TAP zapewnia przyjmowanie i transmisjÄ™ pakietÃ³w dla programÃ³w
+user-space. MoÅ¼e byÄ‡ widziany jako zwykÅ‚e urzÄ…dzenie Point-to-Point
+lub Ethernet, ktÃ³re zamiast otrzymywania pakietÃ³w z fizycznego medium
+otrzymuje je od programu i zamiast wysyÅ‚ania pakietÃ³w przez fizyczne
+medium wysyÅ‚a je do programu.
 
 %package -n kernel%{smpstr}-net-tun
 Summary:	Universal TUN/TAP device driver
-Summary(pl):	Uniwersalny sterownik urz±dzeñ TUN/TAP
+Summary(pl.UTF-8):   Uniwersalny sterownik urzÄ…dzeÅ„ TUN/TAP
 Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
@@ -53,12 +53,12 @@ device, which instead of receiving packets from a physical media,
 receives them from user space program and instead of sending packets
 via physical media writes them to the user space program.
 
-%description -n kernel%{smpstr}-net-tun -l pl
-TUN/TAP zapewnia przyjmowanie i transmisjê pakietów dla programów
-user-space. Mo¿e byæ widziany jako zwyk³e urz±dzenie Point-to-Point
-lub Ethernet, które zamiast otrzymywania pakietów z fizycznego medium
-otrzymuje je od programu i zamiast wysy³ania pakietów przez fizyczne
-medium wysy³a je do programu.
+%description -n kernel%{smpstr}-net-tun -l pl.UTF-8
+TUN/TAP zapewnia przyjmowanie i transmisjÄ™ pakietÃ³w dla programÃ³w
+user-space. MoÅ¼e byÄ‡ widziany jako zwykÅ‚e urzÄ…dzenie Point-to-Point
+lub Ethernet, ktÃ³re zamiast otrzymywania pakietÃ³w z fizycznego medium
+otrzymuje je od programu i zamiast wysyÅ‚ania pakietÃ³w przez fizyczne
+medium wysyÅ‚a je do programu.
 
 %prep
 %setup -q
