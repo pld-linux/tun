@@ -8,7 +8,7 @@
 %define		smpstr		%{?with_smp:-smp}
 %define		smp		%{?with_smp:1}%{!?with_smp:0}
 Summary:	Universal TUN/TAP device driver
-Summary(pl.UTF-8):   Uniwersalny sterownik urządzeń TUN/TAP
+Summary(pl.UTF-8):	Uniwersalny sterownik urządzeń TUN/TAP
 Name:		tun
 Version:	1.1
 Release:	1
@@ -38,7 +38,7 @@ medium wysyła je do programu.
 
 %package -n kernel%{smpstr}-net-tun
 Summary:	Universal TUN/TAP device driver
-Summary(pl.UTF-8):   Uniwersalny sterownik urządzeń TUN/TAP
+Summary(pl.UTF-8):	Uniwersalny sterownik urządzeń TUN/TAP
 Release:	%{release}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Requires(post,postun):	/sbin/depmod
